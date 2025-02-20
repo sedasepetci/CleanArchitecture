@@ -8,5 +8,5 @@ public sealed class Car:Entity
 {
     public string Name { get; set; }
     public string Model { get; set; }
-    public string EnginePower { get; set; }
+    public int EnginePower { get; set; }
 }
