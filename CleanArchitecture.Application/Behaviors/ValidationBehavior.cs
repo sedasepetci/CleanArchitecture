@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
-using System.Diagnostics.Contracts;
+
 
 namespace CleanArchitecture.Application.Behaviors
 {
