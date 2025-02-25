@@ -11,6 +11,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddTransient<ExceptionMiddleware>();
+
 builder.Services.AddAutoMapper(typeof(CleanArchitecture.Persistance.AssemblyReference).Assembly);
 
 string connectionString = builder.Configuration.GetConnectionString("SqlServer");
