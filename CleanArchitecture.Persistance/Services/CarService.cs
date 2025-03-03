@@ -5,9 +5,9 @@ using CleanArchitecture.Application.Services;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Repositories;
 using CleanArchitecture.Persistance.Context;
-using CleanArchitecture.Persistance.Repositories;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace CleanArchitecture.Persistance.Services;
 
@@ -38,7 +38,24 @@ public sealed class CarService : ICarService
 
     public async Task<IList<Car>> GetAllAsync(GetAllCarQuery request, CancellationToken cancellationToken)
     {
-        IList<Car> cars = await _carRepository.GetAll().ToListAsync(cancellationToken);
+        
+        var carsQuery = _carRepository.GetAll();
+
+       
+        if (!string.IsNullOrWhiteSpace(request.Search))
+        {
+            carsQuery = carsQuery.Where(car => car.Name.Contains(request.Search));
+        }
+
+       
+        carsQuery = carsQuery
+            .Skip((request.PageNumber - 1) * request.PageSize)
+            .Take(request.PageSize);
+
+        
+        var cars = await carsQuery.ToListAsync(cancellationToken);
+
         return cars;
     }
+
 }

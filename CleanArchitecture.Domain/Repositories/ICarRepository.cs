@@ -5,4 +5,5 @@ namespace CleanArchitecture.Domain.Repositories;
 
 public interface ICarRepository:IRepository<Car>
 {
+   
 }
