@@ -15,9 +15,10 @@ namespace CleanArchitecture.Infrastructure.Authentication
     {
         private readonly JwtOptions _jwtOptions;
         private readonly UserManager<User> _userManager;
-        public JwtProvider(IOptions<JwtOptions> jwtOptions)
+        public JwtProvider(IOptions<JwtOptions> jwtOptions,UserManager<User> userManager)
         {
             _jwtOptions = jwtOptions.Value;
+            _userManager = userManager;
         }
 
         public async Task<LoginCommandResponse> CreateTokenAsync(User user)
@@ -54,10 +55,7 @@ namespace CleanArchitecture.Infrastructure.Authentication
                 token,
                 refreshToken,
                 user.RefreshTokenExpires,
-                user.Id,
-                user.UserName,
-                user.NameLastName,
-                user.Email);
+                user.Id );
 
             return response;
          
