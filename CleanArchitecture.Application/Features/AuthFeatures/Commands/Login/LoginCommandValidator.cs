@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Features.AuthFeatures.Commands.Login
 {
-    public sealed class LoginCommandValidator:AbstractValidator<LoginCommand>
+    public sealed class LoginCommandValidator:AbstractValidator<CreateNewTokenByRefreshCommand>
     {
         public LoginCommandValidator()
         {

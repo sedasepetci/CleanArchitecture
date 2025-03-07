@@ -3,7 +3,7 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Features.AuthFeatures.Commands.Login
 {
-    public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, LoginCommandResponse>
+    public sealed class LoginCommandHandler : IRequestHandler<CreateNewTokenByRefreshCommand, LoginCommandResponse>
     {
         private readonly IAuthService _authService;
 
@@ -12,7 +12,7 @@ namespace CleanArchitecture.Application.Features.AuthFeatures.Commands.Login
             _authService = authService;
         }
 
-        public async Task<LoginCommandResponse> Handle(LoginCommand request,CancellationToken cancellationToken)
+        public async Task<LoginCommandResponse> Handle(CreateNewTokenByRefreshCommand request,CancellationToken cancellationToken)
         {
             LoginCommandResponse response = await _authService.LoginAsync(request, cancellationToken);
 

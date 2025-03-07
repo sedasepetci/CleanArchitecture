@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Application.Features.AuthFeatures.Commands.Login;
 
-public sealed record LoginCommand(
+public sealed record CreateNewTokenByRefreshCommand(
     string UserNameOrEmail,
     string Password
     ):IRequest<LoginCommandResponse>;
